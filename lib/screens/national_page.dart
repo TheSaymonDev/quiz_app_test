@@ -1,11 +1,15 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_app_3/api/pdf_view_api.dart';
 import 'package:quiz_app_3/colors.dart';
+import 'package:quiz_app_3/data/pdf_name.dart';
 import 'package:quiz_app_3/data/questions_example.dart';
 import 'package:quiz_app_3/data/topic_example.dart';
+import 'package:quiz_app_3/screens/pdf_viewer_page.dart';
 import 'package:quiz_app_3/screens/quiz_screen.dart';
 
 class NationalPage extends StatefulWidget {
@@ -16,7 +20,6 @@ class NationalPage extends StatefulWidget {
 }
 
 class _NationalPageState extends State<NationalPage> {
-  var selected = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,15 +48,20 @@ class _NationalPageState extends State<NationalPage> {
           scrollDirection: Axis.vertical,
           itemBuilder: (context, index) {
             return GestureDetector(
-              onTap: () {
-                setState(() {
-                  selected = index;
-                  myQuestionList == selected;
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => QuizzScreen(
-                        nationalList: myQuestionList[index],
-                          )));
-                });
+              onTap: () async{
+                 final url = topicListNational[index]['pdfName'];
+                 final file = await PDFApi.loadFirebase(url);
+                 if (file == null) return;
+                 openPDF(context, file);
+
+
+                  // selected = index;
+                  // myQuestionList == selected;
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //     builder: (context) => QuizzScreen(
+                  //       nationalList: myQuestionList[index],
+                  //         )));
+
               },
               child: Container(
                 height: 120,
@@ -108,4 +116,9 @@ class _NationalPageState extends State<NationalPage> {
       ),
     );
   }
+
+  void openPDF(BuildContext context, File file) => Navigator.of(context).push(
+    MaterialPageRoute(builder: (context) => PDFViewerPage(file: file)),
+  );
+
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app_3/colors.dart';
 import 'package:quiz_app_3/data/questions_example.dart';
 import 'package:quiz_app_3/screens/result_page.dart';
-import 'package:quiz_app_3/ui/shared/colors.dart';
 
 class QuizzScreen extends StatefulWidget {
    QuizzScreen({Key? key, this.nationalList}) : super(key: key);
