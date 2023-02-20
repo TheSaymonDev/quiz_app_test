@@ -5,9 +5,19 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
 class PDFApi {
-  static Future<File?> loadFirebase(String url) async {
+  static Future<File?> loadFirebaseNational(String url) async {
     try{
       final refPDF1 = FirebaseStorage.instance.ref().child('national');
+      final refPDF = refPDF1.child(url);
+      final bytes = await refPDF.getData();
+      return _storeFile(url, bytes!);
+    }catch(e){
+      print(e);
+    }
+  }
+  static Future<File?> loadFirebaseInternational(String url) async {
+    try{
+      final refPDF1 = FirebaseStorage.instance.ref().child('international');
       final refPDF = refPDF1.child(url);
       final bytes = await refPDF.getData();
       return _storeFile(url, bytes!);

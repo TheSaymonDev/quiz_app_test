@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app_3/screens/home_page.dart';
+import 'package:quiz_app_3/screens/international_page.dart';
+import 'package:quiz_app_3/screens/national_page.dart';
 
-Future main() async{
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -14,10 +16,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        '/national': (context) => NationalPage(),
+        '/international': (context) => InternationalPage(),
+      },
       debugShowCheckedModeBanner: false,
-      home:  HomePage(
-
-      ),
+      home: HomePage(),
     );
   }
 }

@@ -31,10 +31,12 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Expanded(
                             child: GestureDetector(
-                              onTap:(){
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => NationalPage(),));
-                              },
-                              child: Container(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => NationalPage(),
+                            ));
+                          },
+                          child: Container(
                             height: double.infinity,
                             width: double.infinity,
                             decoration: BoxDecoration(
@@ -84,13 +86,15 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Expanded(
                             child: GestureDetector(
-                              onTap:(){
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => InternationalPage(),));
-                              },
-                              child: Container(
-                          height: double.infinity,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => InternationalPage(),
+                            ));
+                          },
+                          child: Container(
+                            height: double.infinity,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
                               color: containerClr1,
                               boxShadow: [
@@ -98,12 +102,12 @@ class _HomePageState extends State<HomePage> {
                                   color: containerClr1.withOpacity(0.5),
                                   spreadRadius: 4,
                                   blurRadius: 2,
-                                  offset:
-                                      Offset(0, 3), // changes position of shadow
+                                  offset: Offset(
+                                      0, 3), // changes position of shadow
                                 ),
                               ],
-                          ),
-                          child: Column(
+                            ),
+                            child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Image.asset(
@@ -130,9 +134,9 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ),
                               ],
+                            ),
                           ),
-                        ),
-                            )),
+                        )),
                       ],
                     ),
                   )),

@@ -691,7 +691,7 @@ List<QuestionModel> questions40 = [
   }),
 ];
 
-List<List> myQuestionList = [
+List<List> nationalQuestionList = [
   questions1,
   questions2,
   questions3,
@@ -1510,7 +1510,7 @@ List<QuestionModel> questions85 = [
   }),
 ];
 
-List<List> myQuestionList1 = [
+List<List> internationalQuestionList = [
   questions41,
   questions42,
   questions43,
