@@ -18,7 +18,6 @@ class PDFViewerPage extends StatefulWidget {
 }
 
 class _PDFViewerPageState extends State<PDFViewerPage> {
-  int selected = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +28,15 @@ class _PDFViewerPageState extends State<PDFViewerPage> {
         centerTitle: true,
         title: Text(name),
       ),
-      body: PDFView(
-        filePath: widget.file!.path,
-        pageSnap: false,
-        pageFling: false,
-        autoSpacing: false,
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        child: PDFView(
+          filePath: widget.file!.path,
+          pageSnap: false,
+          pageFling: false,
+          autoSpacing: false,
+        ),
       ),
       floatingActionButton: MaterialButton(
         onPressed: () {
@@ -65,5 +68,6 @@ class _PDFViewerPageState extends State<PDFViewerPage> {
         ),
       ),
     );
+
   }
 }

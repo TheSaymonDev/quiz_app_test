@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app_3/colors.dart';
-import 'package:quiz_app_3/screens/national_page.dart';
 import 'package:quiz_app_3/screens/quiz_page.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
@@ -147,9 +146,6 @@ class _ResultPageState extends State<ResultPage> {
                 Spacer(),
                 GestureDetector(
                   onTap: () {
-                    // Navigator.pushNamed(context, '${widget.routeName}');
-                    // Navigator.popUntil(context, (route) => route.isFirst);
-                    //Navigator.popAndPushNamed(context, '${widget.routeName}');
                     Navigator.pushNamedAndRemoveUntil(
                         context, '${widget.routeName}', (route) => false);
                   },

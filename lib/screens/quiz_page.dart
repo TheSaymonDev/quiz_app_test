@@ -22,7 +22,7 @@ class _QuizPageState extends State<QuizPage> {
   String btnText = "Next Question";
   bool answered = false;
 
-  late Timer _timer;
+  late Timer timer;
   int _remainingSeconds = 5;
 
   @override
@@ -31,6 +31,33 @@ class _QuizPageState extends State<QuizPage> {
     super.initState();
     _controller = PageController(initialPage: 0);
     _startTimer();
+  }
+
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
+
+  void _startTimer() {
+    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        if (_remainingSeconds > 0) {
+          _remainingSeconds--;
+        } else {
+          timer.cancel();
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ResultPage(
+                    score: score,
+                    outOf: widget.questionList!.length,
+                    routeName: widget.routeName,
+                  )));
+        }
+      });
+    });
   }
 
   @override
@@ -226,31 +253,6 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 
-  @override
-  void dispose() {
-    _timer.cancel();
-    super.dispose();
-  }
-
-  void _startTimer() {
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      setState(() {
-        if (_remainingSeconds > 0) {
-          _remainingSeconds--;
-        } else {
-          _timer.cancel();
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => ResultPage(
-                        score: score,
-                        outOf: widget.questionList!.length,
-                        routeName: widget.routeName,
-                      )));
-        }
-      });
-    });
-  }
 }
 
 myStyle(double size, FontWeight weight, Color clr) {

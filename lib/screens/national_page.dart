@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -73,7 +72,7 @@ class _NationalPageState extends State<NationalPage> {
                           )));
                 },
                 child: Container(
-                  height: 120,
+                  height: MediaQuery.of(context).size.height * .16,
                   decoration: BoxDecoration(
                       color: topicListNational[index]['color'],
                       borderRadius: BorderRadius.circular(12)),
@@ -126,12 +125,4 @@ class _NationalPageState extends State<NationalPage> {
       ),
     );
   }
-
-  void openPDF(BuildContext context, File file, int index) =>
-      Navigator.of(context).push(
-        MaterialPageRoute(
-            builder: (context) => PDFViewerPage(
-                  file: file,
-                )),
-      );
 }

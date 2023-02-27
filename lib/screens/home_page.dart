@@ -140,7 +140,69 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   )),
-              Expanded(flex: 14, child: Container()),
+              Expanded(
+                  flex: 14,
+                  child: Container(
+                    height: double.infinity,
+                    width: double.infinity,
+                    child: Column(
+                      children: [
+                        Expanded(
+                            flex: 10,
+                            child: GestureDetector(
+                              onTap: () {
+
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(15),
+                                margin: EdgeInsets.symmetric(vertical: 20),
+                                height: double.infinity,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: containerClr2,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Image.asset(
+                                      'images/international.png',
+                                      width: 50,
+                                    ),
+                                    Text(
+                                      'সাম্প্রতিক বিষয়াবলি',
+                                      style: GoogleFonts.tiroBangla(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: whiteClr,
+                                      ),
+                                      child: Icon(
+                                        Icons.arrow_forward,
+                                        color: containerClr2,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )),
+                        Expanded(
+                            flex: 14,
+                            child: Container(
+                              height: double.infinity,
+                              width: double.infinity,
+                              color: Colors.cyan,
+                            )),
+                      ],
+                    ),
+                  )),
             ],
           ),
         ),

@@ -72,7 +72,7 @@ class _InternationalPageState extends State<InternationalPage> {
                           )));
                 },
                 child: Container(
-                  height: 120,
+                  height: MediaQuery.of(context).size.height*.16,
                   decoration: BoxDecoration(
                       color: topicListInternational[index]['color'],
                       borderRadius: BorderRadius.circular(12)),
