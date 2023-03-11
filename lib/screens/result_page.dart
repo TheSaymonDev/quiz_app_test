@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app_3/api/my_db_helper.dart';
 import 'package:quiz_app_3/colors.dart';
+import 'package:quiz_app_3/model/score_model.dart';
+import 'package:quiz_app_3/screens/dash_board_page.dart';
 import 'package:quiz_app_3/screens/quiz_page.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:quiz_app_3/screens/tab_bar_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ResultPage extends StatefulWidget {
   ResultPage({Key? key, this.score, this.outOf, this.routeName})
@@ -10,6 +14,7 @@ class ResultPage extends StatefulWidget {
   int? score;
   int? outOf;
   String? routeName;
+  ScoreModel? scoreModel;
 
   @override
   State<ResultPage> createState() => _ResultPageState();
@@ -145,7 +150,16 @@ class _ResultPageState extends State<ResultPage> {
                 ),
                 Spacer(),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
+                    // if(widget.scoreModel==null){
+                    //   await MyDbHelper.insertScore(ScoreModel(score: widget.score!.toInt()));
+                    //   Navigator.pushNamedAndRemoveUntil(
+                    //       context, '${widget.routeName}', (route) => false);
+                    // }
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    prefs.setInt('result', widget.score!.toInt());
+                    print(prefs.getInt('result'));
                     Navigator.pushNamedAndRemoveUntil(
                         context, '${widget.routeName}', (route) => false);
                   },

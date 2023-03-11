@@ -1,8 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_app_3/screens/dash_board_page.dart';
 import 'package:quiz_app_3/screens/home_page.dart';
 import 'package:quiz_app_3/screens/international_page.dart';
 import 'package:quiz_app_3/screens/national_page.dart';
+import 'package:quiz_app_3/screens/recent_page.dart';
+import 'package:quiz_app_3/screens/tab_bar_page.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,9 +29,10 @@ class _MyAppState extends State<MyApp> {
       routes: {
         '/national': (context) => NationalPage(),
         '/international': (context) => InternationalPage(),
+        '/recent': (context) => RecentPage(),
       },
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: TabBarPage(),
     );
   }
 }

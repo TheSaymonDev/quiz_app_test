@@ -8,6 +8,7 @@ import 'package:quiz_app_3/data/questions_example.dart';
 import 'package:quiz_app_3/data/topic_example.dart';
 import 'package:quiz_app_3/screens/home_page.dart';
 import 'package:quiz_app_3/screens/pdf_viewer_page.dart';
+import 'package:quiz_app_3/screens/tab_bar_page.dart';
 
 class NationalPage extends StatefulWidget {
   NationalPage({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class _NationalPageState extends State<NationalPage> {
               onPressed: () {
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
-                      builder: (context) => HomePage(),
+                      builder: (context) => TabBarPage(),
                     ),
                     (route) => false);
               },

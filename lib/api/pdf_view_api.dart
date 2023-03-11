@@ -32,6 +32,19 @@ class PDFApi {
     }
   }
 
+  static Future<File?> loadFirebaseRecent(String url) async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.none) {
+      toastMessage('Please check your internet connection');
+    } else {
+      toastMessage('Please wait');
+      final refPDF1 = FirebaseStorage.instance.ref().child('recent');
+      final refPDF = refPDF1.child(url);
+      final bytes = await refPDF.getData();
+      return _storeFile(url, bytes!);
+    }
+  }
+
   static Future<File> _storeFile(String url, List<int> bytes) async {
     final filename = basename(url);
     final dir = await getApplicationDocumentsDirectory();

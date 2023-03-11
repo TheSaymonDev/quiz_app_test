@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app_3/colors.dart';
 import 'package:quiz_app_3/screens/international_page.dart';
 import 'package:quiz_app_3/screens/national_page.dart';
+import 'package:quiz_app_3/screens/recent_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -140,6 +141,7 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   )),
+              SizedBox(height: 20,),
               Expanded(
                   flex: 14,
                   child: Container(
@@ -148,26 +150,25 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       children: [
                         Expanded(
-                            flex: 10,
                             child: GestureDetector(
                               onTap: () {
-
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => RecentPage(),));
                               },
                               child: Container(
                                 padding: EdgeInsets.all(15),
-                                margin: EdgeInsets.symmetric(vertical: 20),
+                                //margin: EdgeInsets.symmetric(vertical: 20),
                                 height: double.infinity,
                                 width: double.infinity,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: containerClr2,
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: pinkClr,
                                 ),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Image.asset(
-                                      'images/international.png',
+                                      'images/recent.png',
                                       width: 50,
                                     ),
                                     Text(
@@ -186,19 +187,63 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       child: Icon(
                                         Icons.arrow_forward,
-                                        color: containerClr2,
+                                        color: pinkClr,
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
                             )),
+                        SizedBox(height: 10,),
                         Expanded(
-                            flex: 14,
-                            child: Container(
-                              height: double.infinity,
-                              width: double.infinity,
-                              color: Colors.cyan,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => RecentPage(),));
+                              },
+                              child: Container(
+                                 padding: EdgeInsets.symmetric(horizontal: 15),
+                                //margin: EdgeInsets.symmetric(vertical: 20),
+                                height: double.infinity,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: violetClr,
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.topLeft,
+                                      child: Image.asset(
+                                        'images/question.png',
+                                        width: 50,
+                                      ),
+                                    ),
+                                    Text(
+                                      'বিভিন্ন পরীক্ষায় আসা প্রশ্নাবলি',
+                                      style: GoogleFonts.tiroBangla(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: Container(
+                                        padding: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: whiteClr,
+                                        ),
+                                        child: Icon(
+                                          Icons.arrow_forward,
+                                          color: violetClr,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             )),
                       ],
                     ),

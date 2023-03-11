@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_app_3/api/pdf_view_api.dart';
 import 'package:quiz_app_3/colors.dart';
 import 'package:quiz_app_3/screens/home_page.dart';
+import 'package:quiz_app_3/screens/pdf_viewer_page.dart';
+import 'package:quiz_app_3/screens/tab_bar_page.dart';
 
 class RecentPage extends StatefulWidget {
   const RecentPage({Key? key}) : super(key: key);
@@ -12,6 +15,7 @@ class RecentPage extends StatefulWidget {
 }
 
 class _RecentPageState extends State<RecentPage> {
+
   @override
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> _usersStream =
@@ -24,13 +28,13 @@ class _RecentPageState extends State<RecentPage> {
             onPressed: () {
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
-                    builder: (context) => HomePage(),
+                    builder: (context) => TabBarPage(),
                   ),
                   (route) => false);
             },
             icon: Icon(Icons.arrow_back)),
         title: Text(
-          'বসাম্প্রতিক বিষয়াবলি',
+          'সাম্প্রতিক বিষয়াবলি',
           style: GoogleFonts.galada(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -51,28 +55,37 @@ class _RecentPageState extends State<RecentPage> {
             );
           }
           return Container(
+              padding: EdgeInsets.all(15),
               height: double.infinity,
               width: double.infinity,
-              child: Expanded(
-                child: ListView(
-                  children:
-                      snapshot.data!.docs.map((DocumentSnapshot document) {
-                    Map<String, dynamic> data =
-                        document.data()! as Map<String, dynamic>;
-                    return GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        height: 100,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: data['containerClr'],
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Text(data['title']),
+              child: ListView(
+                children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                  Map<String, dynamic> data =
+                      document.data()! as Map<String, dynamic>;
+                  return GestureDetector(
+                    onTap: () async {
+                      final url = data['pdfName'];
+                      final file = await PDFApi.loadFirebaseRecent(url);
+                      if (file == null) return;
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => PDFViewerPage(file: file, routeName: '/recent', ),
+                      ));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 15.0),
+                      child: ListTile(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10))),
+                        tileColor: Color(data['containerClr']),
+                        leading: Icon(Icons.auto_mode_rounded),
+                        title: Text(data['title']),
+                        trailing: Icon(Icons.arrow_forward_ios),
                       ),
-                    );
-                  }).toList(),
-                ),
+                    ),
+                  );
+                }).toList(),
               ));
         },
       ),

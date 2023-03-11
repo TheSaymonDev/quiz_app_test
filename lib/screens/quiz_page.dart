@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app_3/colors.dart';
 import 'package:quiz_app_3/screens/result_page.dart';
 
@@ -23,7 +24,7 @@ class _QuizPageState extends State<QuizPage> {
   bool answered = false;
 
   late Timer timer;
-  int _remainingSeconds = 5;
+  int _remainingSeconds = 30;
 
   @override
   void initState() {
@@ -123,7 +124,7 @@ class _QuizPageState extends State<QuizPage> {
                                         bottomLeft: Radius.circular(20),
                                         bottomRight: Radius.circular(20))),
                                 child: Text(
-                                  "${index + 1}/2",
+                                  "${index + 1}/${widget.questionList!.length}",
                                   textAlign: TextAlign.start,
                                   style: myStyle(
                                       20, FontWeight.bold, containerClr2),
@@ -131,10 +132,11 @@ class _QuizPageState extends State<QuizPage> {
                               ),
                               Text(
                                 "${widget.questionList![index].question}",
-                                style: TextStyle(
+                                style: GoogleFonts.notoSans(
                                   color: textClr,
-                                  fontSize: 22.0,
-                                ),
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 20
+                                )
                               ),
                               Container(
                                 padding: EdgeInsets.all(10),
@@ -195,12 +197,11 @@ class _QuizPageState extends State<QuizPage> {
                             child: Text(
                                 widget.questionList![index].answers!.keys
                                     .toList()[i],
-                                style: myStyle(
-                                    18,
-                                    FontWeight.w400,
-                                    btnPressed == true
-                                        ? whiteClr
-                                        : containerClr2)),
+                              style: GoogleFonts.notoSans(
+                                color: btnPressed==true?whiteClr:containerClr1,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold
+                              ),),
                           ),
                         ),
                       SizedBox(

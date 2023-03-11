@@ -18,6 +18,28 @@ class PDFViewerPage extends StatefulWidget {
 }
 
 class _PDFViewerPageState extends State<PDFViewerPage> {
+  bool isFABVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.routeName == '/recent') {
+      setState(() {
+        isFABVisible = false;
+      });
+    }
+   if(widget.routeName=='/national'){
+     setState(() {
+       isFABVisible=true;
+     });
+   }
+    if(widget.routeName=='/international'){
+      setState(() {
+        isFABVisible=true;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,36 +60,25 @@ class _PDFViewerPageState extends State<PDFViewerPage> {
           autoSpacing: false,
         ),
       ),
-      floatingActionButton: MaterialButton(
-        onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => QuizPage(
-                    questionList: widget.QuestionList,
-                    routeName: widget.routeName,
-                  )));
-        },
-        child: Container(
-          height: 50,
-          width: 100,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30), color: containerClr1),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Exam  ',
-                style: myStyle(16, FontWeight.bold, whiteClr),
-              ),
-              Icon(
-                Icons.arrow_forward,
-                color: whiteClr,
-                size: 18,
-              )
-            ],
+      floatingActionButton: Visibility(
+        visible: isFABVisible,
+        child: FloatingActionButton.extended(
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                         builder: (context) => QuizPage(
+                               questionList: widget.QuestionList,
+                              routeName: widget.routeName,
+                             )));
+          },
+          label: Text('Exam'),
+          icon: Icon(Icons.note_alt_outlined),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
           ),
+          backgroundColor: containerClr1,
+          foregroundColor: whiteClr,
         ),
       ),
     );
-
   }
 }

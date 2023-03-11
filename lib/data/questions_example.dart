@@ -2,19 +2,37 @@ import 'package:quiz_app_3/model/questions_model.dart';
 
 List<QuestionModel> questions1 = [
   QuestionModel(
-    "How Many Whiskers does the average cat have on each side of its face ?",
+    "প্রাচীন বাাংলার জনপদ গুললার মলে সবলচলে প্রাচীনতম জনপদ ছিল ক ানটি?",
     {
-      "1": false,
-      "3": false,
-      "12": true,
-      "5,007": false,
+      "বঙ্গ": false,
+      "পুন্ড্র": true,
+      "কগৌড়": false,
+      "সমতট": false,
     },
   ),
-  QuestionModel("When does a cat purr ?", {
-    "When it cares for its kittens": false,
-    "When it needs confort": false,
-    "When it feels content": false,
-    "All of the above": true,
+  QuestionModel("ছিছল স্থলবন্দরটি ক াথাে অবছস্থত?", {
+    "সাতক্ষীরা": false,
+    "ছদনাজপুর": false,
+    "চুোডাঙ্গা": false,
+    "মেমনছসাংি": true,
+  }),
+  QuestionModel("ছিছল স্থলবন্দরটি ক াথাে অবছস্থত?", {
+    "সাতক্ষীরা": false,
+    "ছদনাজপুর": false,
+    "চুোডাঙ্গা": false,
+    "মেমনছসাংি": true,
+  }),
+  QuestionModel("ছিছল স্থলবন্দরটি ক াথাে অবছস্থত?", {
+    "সাতক্ষীরা": false,
+    "ছদনাজপুর": false,
+    "চুোডাঙ্গা": false,
+    "মেমনছসাংি": true,
+  }),
+  QuestionModel("০িছল স্থলবন্দরটি ক াথাে অবছস্থত?", {
+    "সাতক্ষীরা": false,
+    "ছদনাজপুর": false,
+    "চুোডাঙ্গা": false,
+    "মেমনছসাংি": true,
   }),
 ];
 List<QuestionModel> questions2 = [
